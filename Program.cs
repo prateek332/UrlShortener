@@ -16,10 +16,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGet("/", () => "visit https://github.com/prateek332/UrlShortner-InfraCloud for api documentation");
 
 app.Run();
