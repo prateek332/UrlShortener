@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using UrlShortner.Services;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -14,19 +13,26 @@ namespace UrlShortner.Controllers
 
         readonly IRandomString _randomString;
         readonly IMemoryCache _memoryCache;
-        public ApiController(IMemoryCache memoryCache, IRandomString randomString)
+        readonly IConfiguration _configuration;
+        public ApiController(IMemoryCache memoryCache, IRandomString randomString, IConfiguration configuration)
         {
             _memoryCache = memoryCache;
             _randomString = randomString;
+            _configuration = configuration;
         }
 
+        // GET -> /api
         [HttpGet()]
+        [ProducesResponseType(typeof(string), 200)]
         public IActionResult Index()
         {
-            return Ok("API is up and running. To learn more about api visit https://github.com/prateek332/UrlShortner-InfraCloud");
+            return Ok($"API is up and running. To learn more about api visit {_configuration["ApiDocsUrl"]}");
         }
 
+        // POST -> /api/shorten-url
         [HttpPost("shorten-url")]
+        [ProducesResponseType(typeof(ShortenUrl), 200)]
+        [ProducesResponseType(typeof(string), 400)]
         public async Task<IActionResult> ShortenUrl([FromBody] ShortenUrl url)
         {
             if (!ModelState.IsValid)
@@ -64,6 +70,7 @@ namespace UrlShortner.Controllers
         }
     }
 
+    // utility class for /api/shorten-url POST method request body
     public class ShortenUrl
     {
         public string? UrlToShorten { get; set; }

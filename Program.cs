@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IRandomString, RandomString>();
 
+builder.Configuration.AddJsonFile("myConfig.json");
+
 builder.Services.AddMemoryCache();
 
 builder.Services.AddControllers();
@@ -29,6 +31,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapGet("/", () => "visit https://github.com/prateek332/UrlShortner-InfraCloud for api documentation");
+app.MapGet("/", () => $"visit {app.Configuration["ApiDocsUrl"]} for api documentation");
 
 app.Run();
