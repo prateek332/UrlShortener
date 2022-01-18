@@ -27,6 +27,7 @@ dotnet run
 }
 ```
 - If user attempts to visit the shortened url, they are redirected to the complete url which is cached at the server.
+- Cached URL will be removed after 24 hours
 
 ### Docker Hub Image
 - https://hub.docker.com/r/prateek332/url-shortener
