@@ -17,13 +17,13 @@ dotnet run
 - This endpoint requires a json request body, for e.g. : -
 ```
 {
-  "urlToShorten": "A-Url-String"
+  "urlToShorten": "https://youtube.com/my-channel/asljdfjsadflj1293"
 }
 ```
 - api response is json, for e.g.: -
 ```
 {
-  "shortenUrl": "https://localhost:5000/pNVueIq"
+  "shortenUrl": "https://server-link/pNVueIq"
 }
 ```
 - If user attempts to visit the shortened url, they are redirected to the complete url which is cached at the server.
