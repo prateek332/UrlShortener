@@ -23,7 +23,7 @@ dotnet run
 - api response is json, for e.g.: -
 ```
 {
-	"shortenUrl": "https://localhost:5000/pNVueIq"
+  "shortenUrl": "https://localhost:5000/pNVueIq"
 }
 ```
 - If user attempts to visit the shortened url, they are redirected to the complete url which is cached at the server.
